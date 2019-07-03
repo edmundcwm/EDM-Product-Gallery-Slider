@@ -102,6 +102,7 @@ class EDM_Product_Gallery_Slider {
 
 		$plugin_public = new EDM_Product_Gallery_Slider_Public( $this->plugin_name, $this->version );
 		$this->actions = $this->add_hook_to_collection( $this->actions, 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->actions = $this->add_hook_to_collection( $this->actions, 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 	}
 
 	/**
