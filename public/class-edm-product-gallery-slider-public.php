@@ -47,4 +47,13 @@ class EDM_Product_Gallery_Slider_Public {
         }
     }
 
+    /**
+     * Include WC template override within plugin
+     */
+    public function template_override( $template, $template_name, $template_path ) {
+        $plugin_path = plugin_dir_path( __FILE__ ) . $template_path . $template_name;
+
+        return file_exists( $plugin_path ) ? $plugin_path : $template;
+    }
+
 }
