@@ -56,4 +56,11 @@ class EDM_Product_Gallery_Slider_Public {
         return file_exists( $plugin_path ) ? $plugin_path : $template;
     }
 
+    /**
+     * Disable Flex Slider for WC Product Gallery
+     */
+    public function disable_flex_slider() {
+        return false;
+    }
+
 }

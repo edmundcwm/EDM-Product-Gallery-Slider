@@ -104,6 +104,7 @@ class EDM_Product_Gallery_Slider {
 		$this->actions = $this->add_hook_to_collection( $this->actions, 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->actions = $this->add_hook_to_collection( $this->actions, 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->filters = $this->add_hook_to_collection( $this->filters, 'woocommerce_locate_template', $plugin_public, 'template_override', 10, 3 );
+		$this->filters = $this->add_hook_to_collection( $this->filters, 'woocommerce_single_product_flexslider_enabled', $plugin_public, 'disable_flex_slider' );
 	}
 
 	/**
