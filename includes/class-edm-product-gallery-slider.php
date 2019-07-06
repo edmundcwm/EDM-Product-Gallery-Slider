@@ -103,6 +103,7 @@ class EDM_Product_Gallery_Slider {
 		$plugin_public = new EDM_Product_Gallery_Slider_Public( $this->plugin_name, $this->version );
 		$this->actions = $this->add_hook_to_collection( $this->actions, 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->actions = $this->add_hook_to_collection( $this->actions, 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		$this->filters = $this->add_hook_to_collection( $this->filters, 'woocommerce_locate_template', $plugin_public, 'template_override', 10, 3 );
 	}
 
 	/**
@@ -117,6 +118,9 @@ class EDM_Product_Gallery_Slider {
 			add_action( $action_hook['hook'], array( $action_hook['component'], $action_hook['callback'] ), $action_hook['priority'], $action_hook['args'] );
 		}
 		//register the collection of filters
+		foreach ( $this->filters as $filter_hook ) {
+			add_filter( $filter_hook['hook'], array( $filter_hook['component'], $filter_hook['callback'] ), $filter_hook['priority'], $filter_hook['args'] );
+		}
 	}
 
 	/**
