@@ -34,6 +34,7 @@ class EDM_Product_Gallery_Slider_Public {
     public function enqueue_scripts() {
         if ( is_singular( 'product' ) ) {
             wp_enqueue_script( 'slick-js', plugin_dir_url( __FILE__ ) . 'js/slick.min.js', array( 'jquery' ), $this->version, false );
+            wp_enqueue_script( 'frontend-js', plugin_dir_url( __FILE__ ) . 'js/frontend.js', array( 'jquery' ), $this->version, true );
         }
     }
 
@@ -61,6 +62,13 @@ class EDM_Product_Gallery_Slider_Public {
      */
     public function disable_flex_slider() {
         return false;
+    }
+
+    /**
+     * Enable the use of main product image size for gallery
+     */
+    public function use_main_image( $html, $attachment_id ) {
+        return wc_get_gallery_image_html( $attachment_id, true );
     }
 
 }
