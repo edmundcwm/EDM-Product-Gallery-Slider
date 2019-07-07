@@ -34,7 +34,7 @@ class EDM_Product_Gallery_Slider_Public {
     public function enqueue_scripts() {
         if ( is_singular( 'product' ) ) {
             wp_enqueue_script( 'slick-js', plugin_dir_url( __FILE__ ) . 'js/slick.min.js', array( 'jquery' ), $this->version, false );
-            wp_enqueue_script( 'frontend-js', plugin_dir_url( __FILE__ ) . 'js/frontend.js', array( 'jquery' ), $this->version, true );
+            wp_enqueue_script( 'frontend-js', plugin_dir_url( __FILE__ ) . 'js/frontend.js', array( 'jquery', 'flexslider' ), $this->version, true );
         }
     }
 
@@ -64,6 +64,10 @@ class EDM_Product_Gallery_Slider_Public {
         return false;
     }
 
+    public function disable_photo_swipe() {
+        return false;
+    }
+
     /**
      * Enable the use of main product image size for gallery
      */
@@ -71,4 +75,16 @@ class EDM_Product_Gallery_Slider_Public {
         return wc_get_gallery_image_html( $attachment_id, true );
     }
 
+    /**
+     * Modify Product Gallery FlexSlider options
+     * 
+     * @param  array $options FlexSlider options
+     * @return array $options Modified options
+     */
+    public function product_carousel_options( $options ) {
+        $options['controlNav'] = false;
+        $options['sync'] = '#carousel';
+
+        return $options;
+    }
 }
