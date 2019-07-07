@@ -55,8 +55,21 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 	<!-- Wrapper for product thumbnails -->
 	<div id="product-thumbnails">
 		<div class="woocommerce-product-gallery-thumbnails__wrapper">
-			<?php echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped ?>
-			<?php do_action( 'woocommerce_product_thumbnails' ); ?>
+			<?php 
+				echo wc_get_gallery_image_html( $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+				/**
+				 *  Implement code inside do_action( 'woocommerce_product_thumbnails' ); without the 'woocommerce_single_product_image_thumbnail_html' filter
+				 */ 
+				global $product;
+
+				$attachment_ids = $product->get_gallery_image_ids();
+				
+				if ( $attachment_ids && $product->get_image_id() ) {
+					foreach ( $attachment_ids as $attachment_id ) {
+						echo wc_get_gallery_image_html( $attachment_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+					}
+				}
+			?>
 		</div>
 	</div>
 </div>
