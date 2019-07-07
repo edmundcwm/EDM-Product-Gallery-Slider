@@ -108,9 +108,6 @@ class EDM_Product_Gallery_Slider {
 		$this->filters = $this->add_hook_to_collection( $this->filters, 'woocommerce_single_product_photoswipe_enabled', $plugin_public, 'disable_photo_swipe' );
 		$this->filters = $this->add_hook_to_collection( $this->filters, 'woocommerce_single_product_image_thumbnail_html', $plugin_public, 'use_main_image', 10, 2 );
 		$this->filters = $this->add_hook_to_collection( $this->filters, 'woocommerce_single_product_carousel_options', $plugin_public, 'product_carousel_options', 10, 2 );
-
-		
-		
 	}
 
 	/**
