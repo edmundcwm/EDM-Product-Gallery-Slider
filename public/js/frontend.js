@@ -7,7 +7,8 @@ $('#product-gallery').flexslider({
     animationLoop: false,
     slideshow: false,
     selector: ".woocommerce-product-gallery__wrapper > div",
-    sync: "#product-thumbnails"
+    sync: "#product-thumbnails",
+    smoothHeight: true,
 });
 
 $('#product-thumbnails').flexslider({
