@@ -32,31 +32,29 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 	'woocommerce-product-gallery--columns-' . absint( $columns ),
 	'images',
 ) );
+
 ?>
 <div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;">
-	<!-- Wrapper for product gallery -->
-	<div id="product-gallery">
-		<figure class="woocommerce-product-gallery__wrapper">
-			<?php
-			if ( $product->get_image_id() ) {
-				$html = wc_get_gallery_image_html( $post_thumbnail_id, true );
-			} else {
-				$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
-				$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
-				$html .= '</div>';
-			}
+	<figure class="woocommerce-product-gallery__wrapper">
+		<?php
+		if ( $product->get_image_id() ) {
+			$html = wc_get_gallery_image_html( $post_thumbnail_id, true );
+		} else {
+			$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
+			$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
+			$html .= '</div>';
+		}
 
-			echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
 
-			do_action( 'woocommerce_product_thumbnails' );
-			?>
-		</figure>
-	</div>
-	<!-- Wrapper for product thumbnails -->
+		do_action( 'woocommerce_product_thumbnails' );
+		?>
+	</figure>
+	<!-- Product gallery thumbnail -->
 	<div id="product-thumbnails">
 		<div class="woocommerce-product-gallery-thumbnails__wrapper">
 			<?php 
-				echo wc_get_gallery_image_html( $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+				echo edm_get_gallery_thumbnail( $post_thumbnail_id );
 				/**
 				 *  Implement code inside do_action( 'woocommerce_product_thumbnails' ); without the 'woocommerce_single_product_image_thumbnail_html' filter
 				 */ 
@@ -66,7 +64,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 				
 				if ( $attachment_ids && $product->get_image_id() ) {
 					foreach ( $attachment_ids as $attachment_id ) {
-						echo wc_get_gallery_image_html( $attachment_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+						echo edm_get_gallery_thumbnail( $attachment_id );
 					}
 				}
 			?>
