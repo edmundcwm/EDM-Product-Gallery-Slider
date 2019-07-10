@@ -1,16 +1,5 @@
 var $ = jQuery.noConflict();
 
-$('#product-gallery').flexslider({
-    animation: "slide",
-    controlNav: false,
-    directionNav: false,
-    animationLoop: false,
-    slideshow: false,
-    selector: ".woocommerce-product-gallery__wrapper > div",
-    sync: "#product-thumbnails",
-    smoothHeight: true,
-});
-
 $('#product-thumbnails').flexslider({
     animation: "slide",
     controlNav: false,
@@ -19,6 +8,6 @@ $('#product-thumbnails').flexslider({
     itemWidth: 80,
     itemMargin: 5,
     maxItems: 4,
-    asNavFor: '#product-gallery',
+    asNavFor: '.woocommerce-product-gallery',
     selector: ".woocommerce-product-gallery-thumbnails__wrapper > div",
 });
