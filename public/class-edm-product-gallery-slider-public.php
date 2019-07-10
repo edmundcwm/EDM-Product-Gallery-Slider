@@ -62,13 +62,6 @@ class EDM_Product_Gallery_Slider_Public {
     }
 
     /**
-     * Enable the use of main product image size for gallery
-     */
-    public function use_main_image( $html, $attachment_id ) {
-        return wc_get_gallery_image_html( $attachment_id, true );
-    }
-
-    /**
      * Modify Product Gallery FlexSlider options
      * 
      * @param  array $options FlexSlider options
@@ -80,4 +73,9 @@ class EDM_Product_Gallery_Slider_Public {
 
         return $options;
     }
+
+    public function load_template_functions() {
+        require_once plugin_dir_path( __FILE__ ) . 'edm-product-gallery-template-functions.php';
+    }
+
 }

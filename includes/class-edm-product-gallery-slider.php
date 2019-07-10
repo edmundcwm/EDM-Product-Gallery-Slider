@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 
 
 class EDM_Product_Gallery_Slider {
-	
+
 	/**
 	 * The unique identifier of this plugin.
 	 *
@@ -77,7 +77,7 @@ class EDM_Product_Gallery_Slider {
 
 	/**
 	 * Execute registered hooks
-	 * 
+	 *
 	 * @since   1.0.0
 	 * @access  public
 	 */
@@ -88,12 +88,12 @@ class EDM_Product_Gallery_Slider {
 			$this->define_public_hooks();
 			// $this->define_admin_hooks();
 			$this->register_hooks();
-		}	
+		}
 	}
 
 	/**
 	 * Define all public facing hooks
-	 * 
+	 *
 	 * @since   1.0.0
 	 * @access  private
 	 */
@@ -103,9 +103,9 @@ class EDM_Product_Gallery_Slider {
 		$plugin_public = new EDM_Product_Gallery_Slider_Public( $this->plugin_name, $this->version );
 		$this->actions = $this->add_hook_to_collection( $this->actions, 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->actions = $this->add_hook_to_collection( $this->actions, 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		$this->actions = $this->add_hook_to_collection( $this->actions, 'plugins_loaded', $plugin_public, 'load_template_functions' );
 		$this->filters = $this->add_hook_to_collection( $this->filters, 'woocommerce_locate_template', $plugin_public, 'template_override', 10, 3 );
 		$this->filters = $this->add_hook_to_collection( $this->filters, 'woocommerce_single_product_photoswipe_enabled', $plugin_public, 'disable_photo_swipe' );
-		$this->filters = $this->add_hook_to_collection( $this->filters, 'woocommerce_single_product_image_thumbnail_html', $plugin_public, 'use_main_image', 10, 2 );
 		$this->filters = $this->add_hook_to_collection( $this->filters, 'woocommerce_single_product_carousel_options', $plugin_public, 'product_carousel_options', 10, 2 );
 	}
 
