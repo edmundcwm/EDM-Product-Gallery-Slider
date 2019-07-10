@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name: WooCommerce Product Gallery Slider
- * Description: Enables carousel for product thumbnails 
+ * Description: Enables carousel for WooCommerce Product Gallery thumbnails
  * Plugin URI: https://www.nerb.com.sg
  * Author: Edmundcwm
  * Author URI: https://www.edmundcwm.com
  * License: GPL2 or later
- * Text Domain: wpgs
+ * Text Domain: edm
  */
 
 defined( 'ABSPATH' ) || exit;
