@@ -2,6 +2,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Core Plugin Class
+ */
 
 class EDM_Product_Gallery_Slider {
 
@@ -51,28 +54,10 @@ class EDM_Product_Gallery_Slider {
 	protected $filters;
 
 	public function __construct() {
-		$this->plugin_name = __( 'WooCommerce Product Gallery Slider', 'wpgs' );
+		$this->plugin_name = __( 'WooCommerce Product Gallery Slider', 'edm' );
 		$this->version = '1.0.0';
 		$this->actions = array();
 		$this->filters = array();
-		$this->check_dependencies();
-	}
-
-	private function load_dependencies() {
-
-	}
-
-	/**
-	 * Check if WooCommerce is active
-	 * 
-	 * @since   1.0.0
-	 * @access  private
-	 * @return  boolean    True/false depending if WooCommerce is active or not 
-	 */
-	private function check_dependencies() {
-		require_once plugin_dir_path( __FILE__ ) . 'class-edm-product-gallery-slider-dependencies.php';
-		$this->dependency_check = new EDM_Product_Gallery_Slider_Dependencies( $this->plugin_name );
-		return $this->dependency_check->wc_active_check();
 	}
 
 	/**
@@ -82,13 +67,41 @@ class EDM_Product_Gallery_Slider {
 	 * @access  public
 	 */
 	public function run() {
-		if ( ! $this->check_dependencies() ) {
-			add_action( 'admin_notices', array( $this->dependency_check, 'render_notice' ) );
-		} else {
-			$this->define_public_hooks();
-			// $this->define_admin_hooks();
-			$this->register_hooks();
+		$this->load_classes();
+		$this->create_instances();
+
+		try {
+			$this->dependency_check->check();
+		} catch ( EDM_Product_Gallery_slider_Dependencies_Exception $e ) {
+			$this->report_missing_dependencies( $e->get_missing_plugin_names() );
+			return;
 		}
+
+		$this->define_public_hooks();
+		// $this->define_admin_hooks();
+		$this->register_hooks();
+	}
+
+	/**
+	 * Require all necessary files
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 */
+	private function load_classes() {
+		require_once plugin_dir_path( __FILE__ ) . 'custom-exceptions/class-edm-product-gallery-slider-dependencies-exception.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-edm-product-gallery-slider-dependencies.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-edm-product-gallery-slider-reporter.php';
+	}
+
+	/**
+	 * Prepare instances of external classes
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 */
+	private function create_instances() {
+		$this->dependency_check = new EDM_Product_Gallery_Slider_Dependencies();
 	}
 
 	/**
