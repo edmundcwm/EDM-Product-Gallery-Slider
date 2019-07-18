@@ -165,6 +165,14 @@ class EDM_Product_Gallery_Slider {
 	}
 
 	/**
+	 * Handles reporting of dependencies error
+	 */
+	private function report_missing_dependencies( $missing_plugin_names ) {
+		$missing_dependency_reporter = new EDM_Product_Gallery_Slider_Reporter( $missing_plugin_names, $this->plugin_name );
+		$missing_dependency_reporter->bind_to_admin_hooks();
+	}
+
+	/**
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
