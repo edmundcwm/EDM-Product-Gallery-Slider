@@ -70,6 +70,7 @@ class EDM_Product_Gallery_Slider {
 		$this->load_classes();
 		$this->create_instances();
 
+		// Dependency checker. If required plugins are not active, the plugin will stop execution here.
 		try {
 			$this->dependency_check->check();
 		} catch ( EDM_Product_Gallery_slider_Dependencies_Exception $e ) {
@@ -78,7 +79,7 @@ class EDM_Product_Gallery_Slider {
 		}
 
 		$this->define_public_hooks();
-		// $this->define_admin_hooks();
+		$this->define_admin_hooks();
 		$this->register_hooks();
 	}
 
@@ -123,7 +124,20 @@ class EDM_Product_Gallery_Slider {
 	}
 
 	/**
-	 * Register all public facing hooks
+	 * Define all admin facing hooks
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 */
+	private function define_admin_hooks() {
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-edm-product-gallery-slider-admin.php';
+
+		$plugin_admin = new EDM_Product_Gallery_Slider_Admin( $this->plugin_name, $this->version );
+		$this->filters = $this->add_hook_to_collection( $this->filters, 'woocommerce_product_settings', $plugin_admin, 'add_admin_settings' );
+	}
+
+	/**
+	 * Register all hooks with WordPress
 	 *
 	 * @since   1.0.0
 	 * @access  private
