@@ -3,7 +3,7 @@
 }
 
 /* Thumbnails at the bottom */
-.woocommerce-product-thumbnails--bottom {
+.woocommerce-product-gallery {
     flex-flow: column;
 }
 
