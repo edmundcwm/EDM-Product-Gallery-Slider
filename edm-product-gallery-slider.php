@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: WooCommerce Product Gallery Slider
+ * Plugin Name: EDM Product Gallery Slider
  * Description: Enables carousel for WooCommerce Product Gallery thumbnails
  * Plugin URI: https://www.nerb.com.sg
  * Author: Edmundcwm
