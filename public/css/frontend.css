@@ -47,3 +47,8 @@
 .flex-direction-nav .flex-next:after {
     content: '\f054';
 }
+
+/* Hide nav arrows if it is disabled */
+.flex-direction-nav .flex-disabled {
+    display: none;
+}
