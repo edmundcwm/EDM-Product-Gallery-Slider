@@ -31,5 +31,5 @@ function edm_get_gallery_thumbnail( $attachment_id ) {
 	$full_src          = wp_get_attachment_image_src( $attachment_id, $full_size );
 	$image             = wp_get_attachment_image( $attachment_id, $thumbnail_size );
 
-	return '<div data-thumb="' . esc_url( $thumbnail_src[0] ) . '" data-thumb-alt="' . esc_attr( $alt_text ) . '" class="woocommerce-product-gallery__image"><a href="' . esc_url( $full_src[0] ) . '">' . $image . '</a></div>';
+	return '<div data-thumb="' . esc_url( $thumbnail_src[0] ) . '" data-thumb-alt="' . esc_attr( $alt_text ) . '" class="woocommerce-product-gallery__image">' . $image . '</div>';
 }
