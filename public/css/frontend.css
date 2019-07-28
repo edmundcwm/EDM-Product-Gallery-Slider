@@ -13,6 +13,10 @@
     margin-top: 4px;
 }
 
+.woocommerce-product-gallery__image > img {
+    cursor: pointer;
+}
+
 /* Carousel navigation */
 .flex-direction-nav {
     list-style-type: none;
