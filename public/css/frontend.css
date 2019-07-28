@@ -35,15 +35,15 @@
 
 .flex-direction-nav .flex-prev:after,
 .flex-direction-nav .flex-next:after {
-    font-family: 'Font Awesome 5 Free';
+    font-family: 'Font Awesome 5 Free', 'FontAwesome'; /* Fallback to font awesome 4 */
     color: #fff;
     font-size: 20px;
 }
 
 .flex-direction-nav .flex-prev:after {
-    content: '\F053';
+    content: '\f053';
 }
 
 .flex-direction-nav .flex-next:after {
-    content: '\F054';
+    content: '\f054';
 }
