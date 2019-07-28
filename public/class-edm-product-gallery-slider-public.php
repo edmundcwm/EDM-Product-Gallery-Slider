@@ -43,8 +43,10 @@ class EDM_Product_Gallery_Slider_Public {
     public function enqueue_styles() {
         if ( is_singular( 'product' ) ) {
             wp_enqueue_style( 'frontend-css', plugin_dir_url( __FILE__ ) . 'css/frontend.css', array(), $this->version );
-            wp_enqueue_style( 'fa5', plugin_dir_url( __FILE__ ) . 'css/fontawesome.css', array(), $this->version );
-            wp_enqueue_style( 'fa5-solid', plugin_dir_url( __FILE__ ) . 'css/solid.css', array(), $this->version );
+            if ( 'yes' === get_option( 'edm_include_fa' ) ) { //only enqueue FA5 if admin option is checked
+                wp_enqueue_style( 'fa5', plugin_dir_url( __FILE__ ) . 'css/fontawesome.min.css', array(), '5.9.0' );
+                wp_enqueue_style( 'fa5-solid', plugin_dir_url( __FILE__ ) . 'css/solid.min.css', array(), '5.9.0' );
+            }
         }
     }
 
