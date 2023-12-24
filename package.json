@@ -1,0 +1,25 @@
+{
+  "name": "edm-product-gallery-slider",
+  "version": "1.0.0",
+  "description": "A WooCommerce extended plugin that transforms the default Single product gallery into a slider.",
+  "scripts": {
+    "start": "wp-env start",
+    "stop": "wp-env stop",
+    "clean": "wp-env clean",
+    "start-debug": "wp-env start --debug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edmundcwm/EDM-Product-Gallery-Slider.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edmundcwm/EDM-Product-Gallery-Slider/issues"
+  },
+  "homepage": "https://github.com/edmundcwm/EDM-Product-Gallery-Slider#readme",
+  "devDependencies": {
+    "@wordpress/env": "^9.0.0"
+  }
+}
